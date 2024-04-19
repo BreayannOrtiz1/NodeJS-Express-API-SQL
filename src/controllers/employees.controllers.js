@@ -33,18 +33,18 @@ export const postEmployees = async function(req, res) { //CREATE
     console.log(req.body)
     const {name, salary} = req.body // Data from client, maybe make a verification if data send is correct...
     //Store only row from respon of query
-    try {
+    //try {
         const [rows] = await pool.query('INSERT INTO employee (name, salary) VALUES (?, ?)', [name, salary])
         res.send({
             id: rows.insertId,
             name,
             salary,
         })
-    } catch (error) {
-        res.status(500).json({
-            message: "Error form DB, cannot connect to DB"
-        })
-    }
+    // } catch (error) {
+    //     // res.status(500).json({
+    //     //     message: "Error form DB, cannot connect to DB"
+    //     // })
+    // }
 }
 
 export const putEmployees = async function(req, res) {
